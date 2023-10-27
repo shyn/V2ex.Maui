@@ -9,11 +9,27 @@
              xmlns:fonts="clr-namespace:V2ex.Maui.Services.Fonts"
              x:Class="V2ex.Maui.Pages.MainPage"
              Shell.NavBarIsVisible="True"
-            Title="{services:L Text=V2ex}">
-    <VerticalStackLayout>
-        <Image Source="dotnet_bot.png" />
-        <Label Text="{x:Static fonts:FaSolid.ChevronRight}" FontFamily="FaSolid"> </Label>
-
-        <Button Text="Hello world"></Button>
-    </VerticalStackLayout>
+            Title="{services:L Text=V2ex}"
+             x:DataType="pages:MainPageViewModel">
+    <CollectionView ItemsSource="{Binding  Images}"
+                    VerticalScrollBarVisibility="Always"
+                    HorizontalScrollBarVisibility="Always"
+                    >
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="pages:ImageItemViewModel">
+                <Grid RowDefinitions="auto,*">
+                    <Label >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Index}"></Span>
+                                <Span Text=" "></Span>
+                                <Span Text="{Binding Title}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <WebView Grid.Row="1" Source="{Binding Image}" ></WebView>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

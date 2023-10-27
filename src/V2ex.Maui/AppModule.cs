@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Http.Logging;
+﻿using Bogus;
+using Microsoft.Extensions.Http.Logging;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
 using V2ex.Api;

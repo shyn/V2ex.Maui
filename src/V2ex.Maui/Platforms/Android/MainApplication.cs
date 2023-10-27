@@ -22,9 +22,15 @@ namespace V2ex.Maui
             if (OperatingSystem.IsAndroidVersionAtLeast(26))
             {
                 Microsoft.Maui.Handlers.WebViewHandler.Mapper.ModifyMapping(
-                    nameof(Android.Webkit.WebChromeClient),
-                    (handler, view, args) => 
-                        handler.PlatformView.SetWebChromeClient(new CustomWebChromeClient(handler)));
+                    nameof(Android.Webkit.WebViewClient),
+                    (handler, view, args) =>
+                    {
+                        handler.PlatformView.Settings.JavaScriptEnabled = true;
+                        handler.PlatformView.Settings.AllowContentAccess = true;
+                        handler.PlatformView.Settings.DomStorageEnabled = true;
+                        handler.PlatformView.AddJavascriptInterface(new InteropInterface(handler.VirtualView), "interop");
+                        handler.PlatformView.SetWebViewClient(new WebViewClient());
+                    });
             }
 
             var app = MauiProgram.CreateMauiApp(FilesDir!.AbsolutePath);

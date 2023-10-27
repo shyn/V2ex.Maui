@@ -9,7 +9,7 @@ public partial class App : Application
     {
         InitializeComponent();
         InstanceActivator.Initialize(serviceProvider);
-        MainPage = serviceProvider.GetRequiredService<AppShell>();
-        //MainPage = serviceProvider.GetRequiredService<MainPage>();
+        //MainPage = serviceProvider.GetRequiredService<AppShell>();
+        MainPage = serviceProvider.GetRequiredService<MainPage>();
     }
 }
