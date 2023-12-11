@@ -14,6 +14,7 @@ public class CookieHttpClientHandler : HttpClientHandler
 
     public CookieHttpClientHandler(IPreferences preference)
     {
+        Proxy = new WebProxy("socks5://127.0.0.1:1080");
         this.CookieContainer = new CookieContainer();
         this.UseCookies = true;
         this.UseDefaultCredentials = false;
